@@ -5,4 +5,5 @@ void main(){
     int n;
     scanf("%d",&n);
     printf("Hello, World!");
+    printf("%d",n);
 }

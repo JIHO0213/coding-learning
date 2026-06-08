@@ -21,12 +21,5 @@ for i in range(len(dice)):
         score = 15
 
     elif dice[i] == 2:
-        score = 10 
-    
-
-    
-
+        score = 10     
 print(score)
-
-
-

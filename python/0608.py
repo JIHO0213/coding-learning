@@ -1,4 +1,4 @@
-dice = [0, 0, 0, 0, 0, 0]
+dice = [0 for _ in range(6)]
 score = 0
 
 for i in range(4):
@@ -7,7 +7,7 @@ for i in range(4):
 for i in range(len(dice)):
     if dice[i] == 4:
         score = 40
-        break
+
     elif all(dice[i:i+4]) and len(dice[i:i+4]) == 4:
         score = 30
         

@@ -9,6 +9,11 @@ int a_in_arr(char arr[], char a, int index){
 }
 
 void main(){
-    char n[5] = {'1','2','3','4','5'};
-    printf("%d", a_in_arr(n,'a',5));
+    int arr[10] = {1,2,3,4,5};
+    int* p1 = arr+1;
+    int* p2 = arr+2;
+    printf("%p %d", arr, p1 == p2);
+
+    
+
 }

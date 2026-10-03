@@ -8,11 +8,25 @@ int a_in_arr(char arr[], char a, int index){
     return 0;
 }
 
+int* sel_next(int* p){
+    int flip[100], *fp = flip;
+    for (int i = 0 ; *(p+1+i) != -1; i++){
+        *fp++ = (*(p+1+i) > *(p+i)) ? 1:-1;
+    }
+    
+    for (int i = 0 ; i< fp-flip; i++){
+        printf("%d: %d ", i, *(flip+i));
+    }
+
+    return 0;
+}
+
 void main(){
-    int arr[10] = {1,2,3,4,5};
-    int* p1 = arr+1;
-    int* p2 = arr+2;
-    printf("%p %d", arr, p1 == p2);
+    int arr[10];
+
+    for (int i = 0 ; i<10; i++) scanf("%d", arr+i);
+
+    sel_next(arr);
 
     
 

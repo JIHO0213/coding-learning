@@ -20,17 +20,18 @@ int main(){
 }
 
 int* sel_next(int* p){
-    int d1 = (*p > *(p+1)) - (*p < *(p+1)); 
-    // 배열의 증감 파악 : p - !p => 1 or -1
-    
-    while (*(p+1) != -1){ // 끝값 도달하기 전까지
-        int d2 = (*p > *(p+1)) - (*p < *(p+1));
-        if (d1 != d2) return p;
-        p++;
+    int flip[100], *fp = flip;
+    for (int i = 0 ; *(p+1+i) != -1; i++){
+        *fp++ = (*(p+1+i) > *(p+i)) ? 1:-1; // 증감 변화 체크 배열
     }
-    return p; 
-
+    
+    for (int *tp = flip; tp<fp; tp++){
+        if (*(tp) * *(tp+1) < 0) return p + (tp - flip) + 1;
+    }
+    return p + (fp - flip);
 }
+
+// 
 
 int input(int* arr){
     int* p = arr;

@@ -2,7 +2,64 @@
 #include <stdio.h>
 #include <string.h>
 
-int main
+int keycmp(int* k1, int* k2){
+    for (int i = 0; i< 26; i++){
+        if (k1[i] != k2[i]) return k1[i] - k2[i];
+    }
+    return 0;
+}
+
+int main(){
+    char str[101];
+    char word[20][10];
+    int key[20][26] = {0, };
+    int wcnt = 0, widx = 0;
+
+    fgets(str, 101, stdin);
+    if (str[strlen(str)-1] == '\n') str[strlen(str)-1] = '\0';
+
+
+    for (int i = 0; i<=strlen(str); i++){
+        if (str[i] == ' ' || str[i] == '\0'){
+            word[wcnt][widx] = '\0';
+            for (int j = 0; j<widx; j++){
+                int apb_i = word[wcnt][j] - 'a';
+                key[wcnt][apb_i]++;
+            }
+            wcnt++; widx = 0;
+        }
+        else {
+            word[wcnt][widx++] = str[i];
+        }
+    }
+
+
+    for (int i = 0; i<wcnt-1; i++){
+        for (int j = 0; j<wcnt-i-1; j++){
+            if (keycmp(key[j], key[j+1]) < 0){
+                for (int k = 0; k<26; k++){
+                    int t = key[j][k];
+                    key[j][k] = key[j+1][k];
+                    key[j+1][k] = t;
+                }
+                char tmp[100];
+                strcpy(tmp, word[j]);
+                strcpy(word[j], word[j+1]);
+                strcpy(word[j+1], tmp);
+            }
+        }
+    }
+
+    for (int i = 0; i<wcnt; i++){
+        printf("%s", word[i]);
+        if (word[i+1] && keycmp(key[i], key[i+1]) != 0){
+            printf("\n");
+        }
+        else {printf(" ");}
+    }
+
+    return 0;
+}
 
 
 
@@ -57,4 +114,4 @@ int main(){
 /*
 aaBBBc
 2
-*/ */
+*/
